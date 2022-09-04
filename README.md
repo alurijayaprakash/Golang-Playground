@@ -1,2 +1,2 @@
 # Golang-Projects
-All Golang Projects stored here
+Here you can get Golang Projects
