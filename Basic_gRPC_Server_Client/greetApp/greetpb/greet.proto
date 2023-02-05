@@ -23,8 +23,20 @@ message GreetResponse{
     string result = 1;
 }
 
+// GreetMany Request
+message GreetManyRequest{
+    Greeting greeting = 1;
+}
+
+// GreetMany Response
+message GreetManyResponse{
+    string result = 1;
+}
+
 // It's kind of end point
 service GreetService{
     // Unary
     rpc Greet(GreetRequest) returns (GreetResponse);
+    // Server Streaming
+    rpc GreetMany(GreetManyRequest) returns (stream GreetManyResponse);
 }

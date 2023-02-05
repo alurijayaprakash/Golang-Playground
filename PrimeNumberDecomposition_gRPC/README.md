@@ -1,6 +1,8 @@
-# GreetApp
+# PrimeApp
 
-### GreetApp Implemented on top of gRPC-golang
+### PrimeApp Implemented on top of gRPC-golang
+## Server Streaming
+
 
 
 ## folder structure
@@ -21,10 +23,10 @@ choose win64X and update env variables too
 
 Generate Protocode
 1. pkg name in protofile should be like this
-option go_package="/greetpb";
+option go_package="/primepb";
 2. generate protofile
--- to generate proto file only : protoc -I greetApp/ --go_out=greetApp/ greetApp/greetpb/greet.proto
--- to generate grpc and proto file : protoc -I greetApp/ --go_out=greetApp/ --go-grpc_out=greetApp/ greetApp/greetpb/greet.proto
+-- to generate proto file only : protoc -I PrimeApp/ --go_out=PrimeApp/ PrimeApp/primepb/greet.proto
+-- to generate grpc and proto file : protoc -I PrimeApp/ --go_out=PrimeApp/ --go-grpc_out=PrimeApp/ PrimeApp/primepb/prime.proto
 
 Hint : go with grpc+proto
 

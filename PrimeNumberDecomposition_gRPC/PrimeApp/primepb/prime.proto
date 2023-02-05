@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+//package name
+package prime;
+
+//this is useful, while rendering golang code with packagename ending with pb
+// so proto code pkg is greet then generated golang code pkg is greetpb
+option go_package="/primepb";
+
+
+// Prime Request
+message PrimeRequest{
+    int32 num = 1;
+}
+
+// Prime Response
+message PrimeResponse{
+    int32 result = 1;
+}
+
+
+// It's kind of end point
+service PrimeService{
+
+    // Server Streaming
+    rpc PrimeMany(PrimeRequest) returns (stream PrimeResponse);
+}
