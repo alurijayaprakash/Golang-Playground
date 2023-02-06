@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+//package name
+package findmax;
+
+//this is useful, while rendering golang code with packagename ending with pb
+// so proto code pkg is greet then generated golang code pkg is greetpb
+option go_package="/findmaxpb";
+
+// FindMax Request
+message FindMaxRequest{
+    int32 num = 1;
+}
+
+// FindMax Response
+message FindMaxResponse{
+    int32 result = 1;
+}
+
+// It's kind of end point
+service FindMaxService{
+    rpc GetMaxNum(stream FindMaxRequest) returns (stream FindMaxResponse);
+}

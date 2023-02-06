@@ -4,6 +4,7 @@ import (
 	"basicgreet/greetApp/greetpb"
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"net"
 	"strconv"
@@ -37,7 +38,7 @@ func (s *myserver) Greet(ctx context.Context, req *greetpb.GreetRequest) (*greet
 func (s *myserver) GreetMany(req *greetpb.GreetManyRequest, stream greetpb.GreetService_GreetManyServer) error {
 	fmt.Println("GreetMany Func was invoked with req", req)
 	firstName := req.GetGreeting().GetFirstName()
-	for i := 1; i <= 10; i++ {
+	for i := 1; i <= 5; i++ {
 		result := "Hello " + firstName + " Number is " + strconv.Itoa(i)
 		res := &greetpb.GreetManyResponse{
 			Result: result,
@@ -50,11 +51,54 @@ func (s *myserver) GreetMany(req *greetpb.GreetManyRequest, stream greetpb.Greet
 }
 
 // Client Streaming
-func (s *myserver) LongGreet(greetpb.GreetService_LongGreetServer) error {
+func (s *myserver) LongGreet(stream greetpb.GreetService_LongGreetServer) error {
+	fmt.Println("LongGreet Func was invoked with stream")
+	result := ""
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			fmt.Println("LongGreet Func finished reading from client stream and sent response to client => ", result)
+			return stream.SendAndClose(&greetpb.LongGreetResponse{
+				Result: result,
+			})
+		}
+		if err != nil {
+			log.Fatal("Error while reading client stream", err)
+		}
 
-	return nil
+		firstName := req.GetGreeting().GetFirstName()
+		result += "Hello " + firstName + "! "
+	}
 }
 
+// Bi-Directional Streaming
+func (s *myserver) GreetEveryone(stream greetpb.GreetService_GreetEveryoneServer) error {
+	fmt.Println("GreetEveryone Func was invoked with stream")
+
+	for {
+		req, err := stream.Recv()
+		if err == io.EOF {
+			return nil
+		}
+		if err != nil {
+			log.Fatalf("Error while reading client stream: %v", err)
+			return err
+		}
+		firstName := req.GetGreeting().GetFirstName()
+		result := "Hello " + firstName + "! "
+		fmt.Println("GreetEveryone : Received req is : ", req)
+		sendErr := stream.Send(&greetpb.GreetEveryoneResponse{
+			Result: result,
+		})
+		if sendErr != nil {
+			log.Fatalf("Error While sending data to client %v ", err)
+			return err
+		}
+		fmt.Println("GreetEveryone : Stream sent : ", result)
+	}
+}
+
+// main
 func main() {
 	fmt.Println("Greet Server init....")
 

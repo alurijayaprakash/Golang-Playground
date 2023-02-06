@@ -1,13 +1,14 @@
-# GreetApp
+# FindMaxApp
 
-### GreetApp Implemented on top of gRPC-golang
+### FindMaxApp Implemented on top of gRPC-golang
+## Bi-Directional Streaming
 
 
 ## folder structure
 ----------------------------
-### greetpb - contains proto buffer code - which is common for client and server
-### greet-client - client code
-### greet-server - server code
+### findmaxpb - contains proto buffer code - which is common for client and server
+### findmax-client - client code
+### findmax-server - server code
 
 
 Parameters
@@ -23,8 +24,9 @@ Generate Protocode
 1. pkg name in protofile should be like this
 option go_package="/greetpb";
 2. generate protofile
--- to generate proto file only : protoc -I greetApp/ --go_out=greetApp/ greetApp/greetpb/greet.proto
--- to generate grpc and proto file : protoc -I greetApp/ --go_out=greetApp/ --go-grpc_out=greetApp/ greetApp/greetpb/greet.proto
+-- to generate proto file only : protoc -I FindMaxApp/ --go_out=FindMaxApp/ FindMaxApp/findmaxpb/greet.proto
+-- to generate grpc and proto file : protoc -I FindMaxApp/ --go_out=FindMaxApp/ --go-grpc_out=FindMaxApp/ FindMaxApp/findmaxpb/findmax.proto
+
 
 
 Go plugins for the protocol compiler:

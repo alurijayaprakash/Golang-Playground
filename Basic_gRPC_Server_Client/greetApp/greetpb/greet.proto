@@ -43,6 +43,15 @@ message LongGreetResponse{
     string result = 1;
 }
 
+// GreetEveryone Request
+message GreetEveryoneRequest{
+    Greeting greeting = 1;
+}
+
+// GreetEveryone Response
+message GreetEveryoneResponse{
+    string result = 1;
+}
 
 // It's kind of end point
 service GreetService{
@@ -52,5 +61,7 @@ service GreetService{
     rpc GreetMany(GreetManyRequest) returns (stream GreetManyResponse);
     // Client Streaming
     rpc LongGreet(stream LongGreetRequest) returns (LongGreetResponse);
+    // Bi-Directional Streaming
+    rpc GreetEveryone(stream GreetEveryoneRequest) returns (stream GreetEveryoneResponse);
 
 }

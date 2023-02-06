@@ -12,7 +12,7 @@ import (
 )
 
 const (
-	PORT = ":8080"
+	PORT = ":8081"
 )
 
 func doPrimeStream(conn primepb.PrimeServiceClient) {
