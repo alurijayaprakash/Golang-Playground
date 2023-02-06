@@ -15,6 +15,7 @@ const (
 	PORT = ":8080"
 )
 
+// Unary Streaming
 func doUnary(conn greetpb.GreetServiceClient) {
 	fmt.Println("doUnary Func init...!")
 	req := &greetpb.GreetRequest{
@@ -30,6 +31,7 @@ func doUnary(conn greetpb.GreetServiceClient) {
 	fmt.Println("Response from Greet :", resp)
 }
 
+// Server Streaming
 func doServerStream(conn greetpb.GreetServiceClient) {
 	fmt.Println("doServerStream Func init...!")
 	req := &greetpb.GreetManyRequest{
@@ -53,6 +55,11 @@ func doServerStream(conn greetpb.GreetServiceClient) {
 		}
 		fmt.Println("Response from GreetMany ==> ", msg.GetResult())
 	}
+}
+
+// Client Streaming
+func doClientStream(conn greetpb.GreetServiceClient) {
+
 }
 
 func main() {

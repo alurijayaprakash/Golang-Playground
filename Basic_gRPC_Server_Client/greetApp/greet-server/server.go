@@ -20,6 +20,7 @@ type myserver struct {
 	greetpb.GreetServiceServer
 }
 
+// Unary Streaming
 func (s *myserver) Greet(ctx context.Context, req *greetpb.GreetRequest) (*greetpb.GreetResponse, error) {
 	// extrat info from request
 	// don't directly access fields , only access through getters
@@ -32,6 +33,7 @@ func (s *myserver) Greet(ctx context.Context, req *greetpb.GreetRequest) (*greet
 	return res, nil
 }
 
+// Server Streaming
 func (s *myserver) GreetMany(req *greetpb.GreetManyRequest, stream greetpb.GreetService_GreetManyServer) error {
 	fmt.Println("GreetMany Func was invoked with req", req)
 	firstName := req.GetGreeting().GetFirstName()
@@ -45,7 +47,12 @@ func (s *myserver) GreetMany(req *greetpb.GreetManyRequest, stream greetpb.Greet
 		time.Sleep(1 * time.Second) // time is not required here
 	}
 	return nil
+}
 
+// Client Streaming
+func (s *myserver) LongGreet(greetpb.GreetService_LongGreetServer) error {
+
+	return nil
 }
 
 func main() {

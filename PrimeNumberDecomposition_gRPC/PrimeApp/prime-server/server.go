@@ -28,7 +28,7 @@ func (s *myserver) PrimeMany(req *primepb.PrimeRequest, stream primepb.PrimeServ
 			// K is factor of givenNum
 			resp.Result = int32(k)
 			stream.Send(resp)
-			fmt.Println("PrimeMany Func Sent ==> ", resp.Result)
+			fmt.Println("PrimeMany Func Sent ==> ", resp.GetResult())
 			time.Sleep(1 * time.Second) // time is not required here
 			givenNum = givenNum / int32(k)
 		} else {

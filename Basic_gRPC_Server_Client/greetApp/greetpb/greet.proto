@@ -33,10 +33,24 @@ message GreetManyResponse{
     string result = 1;
 }
 
+// LongGreet Request
+message LongGreetRequest{
+    Greeting greeting = 1;
+}
+
+// LongGreet Response
+message LongGreetResponse{
+    string result = 1;
+}
+
+
 // It's kind of end point
 service GreetService{
     // Unary
     rpc Greet(GreetRequest) returns (GreetResponse);
     // Server Streaming
     rpc GreetMany(GreetManyRequest) returns (stream GreetManyResponse);
+    // Client Streaming
+    rpc LongGreet(stream LongGreetRequest) returns (LongGreetResponse);
+
 }
