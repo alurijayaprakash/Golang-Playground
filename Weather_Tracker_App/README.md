@@ -22,27 +22,27 @@ Navigate to the project directory:
 cd Weather_Tracker_App
 ```
 
-#### Part-A : RUN BACKEND APP
-Navigate to the backend project directory:
+### Part-A : RUN BACKEND APP
+1. Navigate to the backend project directory:
 ```
 cd Backend/cmd
 ```
-Run the application:
+2. Run the application:
 
 ```
 go run main.go
 ```
 
-#### Part-A : RUN FRONTEND APP
-Navigate to the backend project directory:
+### Part-A : RUN FRONTEND APP
+1. Navigate to the frontend project directory:
 ```
 cd Frontend
 ```
-Run the application:
+2. Run the application:
 
 open index.html in any browser
 
-Usage
+#### Usage
 The Weather Tracker Application supports the following:
 
 This App Fetches and displays the weather information for the major location.
@@ -50,11 +50,11 @@ This App Fetches and displays the weather information for the major location.
 
 #### Configuration:
 The application requires an API key to fetch weather data. To set your API key
-API key Provider : http://api.openweathermap.org
+API key Provider : [openweathermap.com](http://api.openweathermap.org)
 
 navigate to Weather_Tracker_App/Backend/internal/router/router.go and set the API key   
 ```
-const APIKEY = "b3740c800de5629c9096b5f2068d74b5"
+const APIKEY = "b3740c800de5629c909s6b5f206w8d74b5"
 ```
 Make sure to replace your-api-key with your actual API key.
 
