@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package calc;
+
+option go_package="/calcpb";
+
+message CalcRequest{
+    sint32 num1 = 1;
+    sint32 num2 = 2;
+}
+
+message CalcResponse{
+    sint32 result = 1;
+}
+
+service CalcService{
+    // Unary
+    rpc GetSum(CalcRequest) returns (CalcResponse);
+    rpc GetMultiply(CalcRequest) returns (CalcResponse);
+    rpc GetDivision(CalcRequest) returns (CalcResponse);
+    rpc GetSubtract(CalcRequest) returns (CalcResponse);
+}

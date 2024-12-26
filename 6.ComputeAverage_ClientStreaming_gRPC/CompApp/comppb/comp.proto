@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+//package name
+package comp;
+
+//this is useful, while rendering golang code with packagename ending with pb
+// so proto code pkg is greet then generated golang code pkg is greetpb
+option go_package="/comppb";
+
+
+// Comp Request
+message CompRequest{
+    int64 num = 1;
+}
+
+// Comp Response
+message CompResponse{
+    int64 result = 1;
+}
+
+// It's kind of end point
+service CompService{
+    // Client Service
+    rpc CompAvg(stream CompRequest) returns (CompResponse);
+
+}
