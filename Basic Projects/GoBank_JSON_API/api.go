@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
 	"net/http"
 )
 
@@ -19,8 +18,8 @@ func NewAPIServer(listenAddr, port string) *APIServer {
 }
 
 func (s *APIServer) Run() {
-	router := mux.NewRouter()
-	
+	// router := mux.NewRouter()
+
 }
 
 func (s *APIServer) handleAccount(w http.ResponseWriter, r *http.Request) error {
