@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "53f8c86a-e3c0-4334-b57e-8cffb6241a28",
+		"name": "StocksAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24497765"
+	},
+	"item": [
+		{
+			"name": "CreateStock-POST",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"name\":\"Facebook\",\r\n    \"company\":\"Meta Inc\",\r\n    \"price\": 113\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/stocks",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"stocks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStockByID-GET",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/stocks/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"stocks",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ListAllStocks-GET",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/stocks",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"stocks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateStock-PUT",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":2,\r\n    \"name\":\"Facebook\",\r\n    \"company\":\"Meta Inc USA\",\r\n    \"price\": 114\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8888/stocks/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"stocks",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteStock-DELETE",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8888/stocks/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"stocks",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

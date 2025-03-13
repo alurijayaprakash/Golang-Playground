@@ -1,6 +1,9 @@
 package service
 
-import "stocksapi/models"
+import (
+	"errors"
+	"stocksapi/models"
+)
 
 type StockServiceImpl struct {
 	repo models.StockRepository
@@ -21,6 +24,11 @@ func (s *StockServiceImpl) GetStock(id int) (*models.Stock, error) {
 }
 
 func (s *StockServiceImpl) AddStock(stock *models.Stock) error {
+	// Check if Stock is already created
+	existingStock, err := s.repo.GetStockByID(stock.Id)
+	if err == nil && existingStock != nil {
+		return errors.New("stock already exists")
+	}
 	return s.repo.CreateStock(stock)
 }
 

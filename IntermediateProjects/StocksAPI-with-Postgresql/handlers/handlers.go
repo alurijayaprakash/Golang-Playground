@@ -73,14 +73,7 @@ func (h *StockHandlerImpl) CreateStockHandler(w http.ResponseWriter, r *http.Req
 	err := json.NewDecoder(r.Body).Decode(&stock)
 	if err != nil {
 		log.Println("CreateStockHandler:unable to decode client body", err)
-		respondWithError(w, http.StatusBadRequest, "unable to read client body")
-		return
-	}
-
-	_, err = h.Service.GetStock(stock.Id)
-	if err == nil {
-		log.Println("CreateStockHandler:stock already created", err)
-		respondWithError(w, http.StatusNotFound, "stock already created")
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 
@@ -88,7 +81,7 @@ func (h *StockHandlerImpl) CreateStockHandler(w http.ResponseWriter, r *http.Req
 	err = h.Service.AddStock(&stock)
 	if err != nil {
 		log.Println("CreateStockHandler:error while creating stock", err)
-		respondWithError(w, http.StatusBadRequest, "error while creating stock")
+		respondWithError(w, http.StatusBadRequest, err.Error())
 		return
 	}
 	respondWithSuccess(w, http.StatusCreated, "stock addedd successfully")
